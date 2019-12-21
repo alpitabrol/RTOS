@@ -1,5 +1,10 @@
 /*
  * pthreads_2.c
+ *
+ *  Created on: Sep. 16, 2019
+ *      Author: takis
+ 
+ edited main code by : alpit abrol
  */
 
 #include <stdio.h>
@@ -7,14 +12,14 @@
 #include <pthread.h>
 #include <unistd.h>
 
-#define	MAXINTS		5 // maximum number of integers that user may enter
+#define	MAXINTS		100// maximum number of integers that user may enter
 
 /*
  * 	global variables
  */
-int	num_ints=0;		// current number of integers entered by user
-int	done=0;			// flag indicating completion of user data entry
-float 	average=0.0;	// global storage for the average
+int	num_ints=0;	// current number of integers entered by user
+int	done=0;		// flag indicating completion of user data entry
+float	average=0.0;	// global storage for the average
 
 /*
  *	function to display the set of numbers periodically
@@ -48,8 +53,8 @@ void 	disp_avg(float x)
  */
 void	*avg_thread(void *arr)
 {
-	int 	*x = (int *) arr; // cast the passed data to integer type
-	int	sum; // storage for the sum
+	int		*x = (int *) arr;	// cast the passed data to integer type
+	int		sum;				// storage for the sum
 
 	while (done==0)
 	{
@@ -73,8 +78,8 @@ void	*avg_thread(void *arr)
  */
 void	*bubb_sort_thread(void *arr)
 {
-	int 	*x = (int *) arr; // cast the passed data to integer type
-	int 	swaps; // a flag indicating if a swap has occurred (if none occur, this set is sorted)
+	int		*x = (int *) arr;	// cast the passed data to integer type
+	int		swaps; 			// a flag indicating if a swap has occurred (if none occur, this set is sorted)
 	int		temp;
 
 	//while (num_ints != MAXINTS)
@@ -104,13 +109,17 @@ void	*bubb_sort_thread(void *arr)
 
 int main()
 {
+
     pthread_t 	thread_calc_1;	// our handle for the averaging thread
     pthread_t	thread_calc_2;	// our handle for the sorting thread
     int 	set[MAXINTS]; 	// storage for our numbers
+    int 	count,input;
 
+    printf("Enter number of integers to be sorted: \t");
+       scanf("%d",&count);
 
     // initialize set to zero
-    for (int i=0; i != MAXINTS; ++i)
+    for (int i=0; i != count; ++i)
     {
     	set[i]=0;
     }
@@ -118,28 +127,30 @@ int main()
     // create threads
     if(pthread_create(&thread_calc_1, NULL, &avg_thread, (void *)set)!=0)
     {
-    	printf("Failed to create the thread\n");
+    	printf("Thread 1 not created\n");
     	return 1;
     }
 
     if(pthread_create(&thread_calc_2, NULL, &bubb_sort_thread, (void *)set)!=0)
     {
-    	printf("Failed to create the thread\n");
+    	printf("Thread 2 not created\n");
     	return 1;
     }
 
-    int 	user_int;
-    printf("Please enter some positive integers... \n");
-    while (num_ints != MAXINTS)
+    printf("Enter the numbers to be sorted\n");
+    while (num_ints != count)
     {
-    	scanf("%d", &user_int);
-    	set[num_ints]=user_int;
-    	++num_ints;
-    	usleep(2000); // encourage pthreads to run
+    	scanf("%d", &input);
+    	set[num_ints]=input;
+    	num_ints++;
+    	usleep(2000); // let pthreads to run
     	disp_sorted(set);
     	disp_avg(average);
-    	printf("num_ints=%d\n",num_ints);
+    	printf("Number of intergers :%d\n",num_ints);
     }
+
+
+
     done=1; // user has finished entering data
     return 0;
 }
