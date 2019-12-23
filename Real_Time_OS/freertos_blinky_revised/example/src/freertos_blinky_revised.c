@@ -85,31 +85,31 @@ static void vLEDTask2(void *pvParameters)
  * @brief	main routine for FreeRTOS blinky example
  * @return	Nothing, function should not exit
  */
-int main(void)
+/*int main(void)
 {
 	prvSetupHardware();
 
 	/* LED1 toggle thread */
-	xTaskCreate(vLEDTask0, (signed char *) "vTaskLed0",
+/*	xTaskCreate(vLEDTask0, (signed char *) "vTaskLed0",
 				configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 3UL),
 				(xTaskHandle *) NULL);
 
 	/* LED2 toggle thread */
-	xTaskCreate(vLEDTask1, (signed char *) "vTaskLed1",
+/*	xTaskCreate(vLEDTask1, (signed char *) "vTaskLed1",
 				configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 2UL),
 				(xTaskHandle *) NULL);
 
 	/* UART output thread, simply counts seconds */
-	xTaskCreate(vLEDTask2, (signed char *) "vTaskLed2",
+/*	xTaskCreate(vLEDTask2, (signed char *) "vTaskLed2",
 				configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
 				(xTaskHandle *) NULL);
 
 	/* Start the scheduler */
-	vTaskStartScheduler();
+/*	vTaskStartScheduler();
 
 	/* Should never arrive here */
-	return 1;
-}
+/*	return 1;
+}*/
 
 /**
  * @}
