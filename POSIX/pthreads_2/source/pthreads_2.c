@@ -3,8 +3,11 @@
  *
  *  Created on: Sep. 16, 2019
  *      Author: takis
+<<<<<<< Updated upstream
  
  edited main code by : alpit abrol
+=======
+>>>>>>> Stashed changes
  */
 
 #include <stdio.h>
