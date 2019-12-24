@@ -1,7 +1,6 @@
 /*
     FreeRTOS V7.1.0 - Copyright (C) 2011 Real Time Engineers Ltd.
 	
-
     ***************************************************************************
      *                                                                       *
      *    FreeRTOS tutorial books are available in pdf and paperback.        *
@@ -20,10 +19,7 @@
      *    Thank you for using FreeRTOS, and thank you for your support!      *
      *                                                                       *
     ***************************************************************************
-
-
     This file is part of the FreeRTOS distribution.
-
     FreeRTOS is free software; you can redistribute it and/or modify it under
     the terms of the GNU General Public License (version 2) as published by the
     Free Software Foundation AND MODIFIED BY the FreeRTOS exception.
@@ -38,15 +34,11 @@
     can be viewed here: http://www.freertos.org/a00114.html and also obtained
     by writing to Richard Barry, contact details for whom are available on the
     FreeRTOS WEB site.
-
     1 tab == 4 spaces!
-
     http://www.FreeRTOS.org - Documentation, latest information, license and
     contact details.
-
     http://www.SafeRTOS.com - A version that is certified for use in safety
     critical systems.
-
     http://www.OpenRTOS.com - Commercial support, development, porting,
     licensing and training services.
 */
@@ -74,7 +66,7 @@
 #define configMAX_PRIORITIES		( ( unsigned portBASE_TYPE ) 8 )
 #define configUSE_TICK_HOOK			0
 #define configCPU_CLOCK_HZ			( ( unsigned long ) SystemCoreClock )
-#define configTICK_RATE_HZ			( ( portTickType ) 1000 )
+#define configTICK_RATE_HZ			( ( portTickType ) 10000 )
 #define configMINIMAL_STACK_SIZE	( ( unsigned short ) 128 )
 #ifdef __CODE_RED
 #define configTOTAL_HEAP_SIZE		( ( size_t ) ( 16*1024 ) )
@@ -166,7 +158,10 @@ See http://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html. */
 /* Definitions that map the FreeRTOS port interrupt handlers to their CMSIS
 standard names - or at least those used in the unmodified vector table. */
 #define vPortSVCHandler SVC_Handler
-#define xPortPendSVHandler PendSV_Handler
+#define xP
+ortPendSVHandler PendSV_Handler
 #define xPortSysTickHandler SysTick_Handler
 
 #endif /* FREERTOS_CONFIG_H */
+
+
